@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Willemverse 4.2: Rock the Willemverse</title><style>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Willemverse 4.3: Legends of the Willemverse</title><style>
 :root{font-family:system-ui,Arial;background:#111a29;color:#f7f3e9}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#293b58,#101722 75%);min-height:100vh}button{cursor:pointer;font:inherit;border:0}header{text-align:center;padding:24px 12px 10px}h1{margin:0;font-size:clamp(28px,5vw,44px)}p{color:#b9c6d9}main{max-width:1020px;margin:auto;padding:12px 18px 40px}.hidden{display:none!important}.roster{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.hero{background:#24334a;border:3px solid #41536e;border-radius:18px;padding:16px 10px;text-align:center;color:white;transition:.15s}.hero.selected{border-color:#ffdb7d;background:#3b4256;transform:translateY(-3px)}.hero canvas{width:90px;height:110px;image-rendering:pixelated}.hero strong{display:block;font-size:18px}.hero small{color:#b9c6d9}.actions{text-align:center;margin:24px}.primary{background:#f7c75e;color:#1a2434;font-weight:800;border-radius:12px;padding:14px 30px}.primary:disabled{opacity:.4}.secondary{background:#394f6a;color:white;padding:10px 18px;border-radius:10px}.gamebar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}.stage{position:relative;max-width:768px;margin:auto}#game{width:100%;display:block;border:4px solid #758ba6;border-radius:12px;image-rendering:pixelated;background:#234b3d}.touch{display:grid;grid-template-columns:repeat(3,58px);gap:5px;justify-content:center;margin:15px auto}.touch button{height:51px;background:#3e5876;color:white;border-radius:12px;font-size:23px;touch-action:none}.touch .empty{visibility:hidden}.note{text-align:center;font-size:14px}.overlay{position:absolute;inset:0;background:#111b2ce8;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;border-radius:12px}.overlay h2{font-size:30px;margin:4px}.overlay p{max-width:380px}@media(max-width:550px){.roster{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.hero{padding:10px 4px}.hero canvas{width:72px;height:90px}.hero strong{font-size:15px}}
 .hero em{display:block;color:#d3dbea;font-size:12px;font-style:normal;margin-top:8px;line-height:1.35;min-height:32px}.hero{background:linear-gradient(155deg,#304d78,#1c2946);border-color:#5275a1;box-shadow:0 5px 0 #0c1425}.hero.selected{border-color:#ffc84b;box-shadow:0 0 0 2px #ffdb7d,0 0 25px #f6b94b66;background:linear-gradient(155deg,#456394,#293652)}h1{color:#ffcb55;text-shadow:3px 4px #5e2e40;letter-spacing:1px}.primary{background:linear-gradient(#ffe38a,#f7b938);box-shadow:0 4px 0 #9a641c}.roster{margin-top:20px}.hero strong{margin:5px 0}.hero canvas{height:110px}.hero small{display:block}.hero:focus-visible{outline:3px solid white;outline-offset:3px}@media(max-width:550px){.hero em{font-size:11px;min-height:43px}}
 #danger{font-weight:900;color:#ffcf62;min-height:1.4em;letter-spacing:.03em}#danger.alert{color:#ff6d71;animation:blink .65s infinite alternate}@keyframes blink{from{opacity:1}to{opacity:.55}}.overlay{z-index:3}.overlay h2{color:#ffd16a;text-shadow:2px 3px #4d1b28}.gamebar{min-height:64px}
@@ -33,19 +33,88 @@
 #musicVolume{width:75px;accent-color:#f7c75e}
 #musicToggle{white-space:nowrap}
 @media(max-width:600px){.game-actions{justify-content:center;width:100%;margin-top:8px}.gamebar{flex-wrap:wrap}}
+
+/* Illustrated fantasy-game menu, styled after the supplied reference */
+body:has(#splash:not(.hidden)),body:has(#select:not(.hidden)){
+ background:#121d3a url('willemverse-landscape.webp') center top / cover fixed no-repeat;
+}
+body:has(#splash:not(.hidden)) header,body:has(#select:not(.hidden)) header{display:none}
+body:has(#splash:not(.hidden)) main,body:has(#select:not(.hidden)) main{max-width:1060px;padding-top:16px}
+#splash,#select{background:linear-gradient(180deg,#111c3a42,#121b3c8c);border-radius:20px;padding:18px 18px 28px;box-shadow:0 12px 60px #071026a8;backdrop-filter:blur(1.5px)}
+#splash .splash-heading{font-family:Georgia,serif;font-weight:1000;letter-spacing:-.055em;font-style:italic;
+ color:#ffca36;-webkit-text-stroke:1px #432144;text-shadow:4px 4px #5e1c3c,7px 7px #0d1734,0 0 20px #ffb63655}
+#splash .splash-heading span{display:block;font:900 clamp(16px,3.3vw,29px) system-ui;letter-spacing:.18em;font-style:normal;
+ background:linear-gradient(#ffe58e,#ed9e36);color:#132044;text-shadow:none;-webkit-text-stroke:0;border:3px solid #5b2941;
+ border-radius:10px;width:max-content;padding:1px 32px;margin:0 auto;box-shadow:0 4px #1d1734}
+#splash .splash-sub{color:#ffe4a3;text-shadow:2px 2px #1a1432}
+#splashArt{border:5px solid #ffc55b;box-shadow:0 0 0 4px #1b2b52,0 16px 30px #0009}
+.primary{border:3px solid #ffd96e;border-radius:14px;background:linear-gradient(#ffe880,#ffc330 60%,#e78c21);color:#17203c;
+ text-shadow:0 1px #fff4bc;box-shadow:0 5px 0 #713a22,0 0 0 2px #1a2949;font-weight:1000;letter-spacing:.035em}
+.secondary{border:2px solid #f1b956;border-radius:13px;background:linear-gradient(#334873,#172542);box-shadow:0 4px 0 #10152a}
+#select{max-width:960px;margin:0 auto}
+.select-title{text-align:center;font-weight:1000;font-size:clamp(21px,4vw,35px);letter-spacing:.06em;color:#fff1c4;
+ background:linear-gradient(#283c68,#14233f);border:4px solid #e7ad53;border-radius:24px;padding:10px 8px;
+ text-shadow:2px 3px #091124;box-shadow:0 6px #10162c}
+.select-hint{text-align:center;color:#fff1d7;font-size:13px;text-shadow:1px 2px #172039}
+#select .roster{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px auto;max-width:690px}
+#select .hero{min-height:125px;border:3px solid #57b9e6;border-radius:15px;background:linear-gradient(#1c4778ed,#12325bef);
+ box-shadow:0 4px #0d2140;padding:7px 5px;color:#fff}
+#select .hero.selected{border-color:#ffd05a;background:linear-gradient(#4566a0,#23365b);box-shadow:0 0 16px #ffc95b}
+#select .hero canvas{height:82px;width:82px;display:block;margin:auto}
+#select .hero strong{font-size:14px;margin:2px 0}
+#select .hero small{font-size:11px}
+#select .hero em{display:none}
+.hero-detail{display:grid;grid-template-columns:155px minmax(0,1fr) 180px;gap:16px;align-items:center;
+ border:4px solid #9ab8f1;border-radius:17px;background:linear-gradient(115deg,#172443f2,#20315cf2);
+ box-shadow:0 0 0 3px #14213c,0 7px 0 #0b1329;padding:14px;margin:20px auto 16px;max-width:890px}
+.portrait-wrap{height:160px;display:grid;place-items:center;background:radial-gradient(circle,#456aa6,#1b2d55);border:3px solid #ffd05a;border-radius:14px}
+#heroPortrait{width:144px;height:144px;image-rendering:pixelated}
+.hero-bio h3{font-size:clamp(23px,4vw,37px);margin:0;color:#ffcb39;text-shadow:3px 3px #2e1d36}
+#heroRole{font-weight:900;color:#fff2d4;letter-spacing:.05em}
+#heroDesc{font-size:14px;color:#e8ecfa;line-height:1.5;margin:10px 0}
+.hero-traits{border-left:2px solid #e0bb6e;padding-left:14px;display:grid;gap:14px;font-weight:800;font-size:13px}
+.hero-traits div{display:flex;gap:8px;align-items:center}
+.select-actions{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:20px auto 8px;max-width:890px}
+.select-actions button{min-height:51px}
+@media(max-width:650px){
+ body:has(#splash:not(.hidden)),body:has(#select:not(.hidden)){background-attachment:scroll;background-size:auto 100vh}
+ #splash,#select{padding:10px 9px 22px}
+ #select .roster{gap:7px}
+ #select .hero{min-height:100px;padding:4px 2px}
+ #select .hero canvas{width:58px;height:65px}
+ #select .hero strong{font-size:12px}
+ #select .hero small{font-size:9px}
+ .hero-detail{grid-template-columns:90px minmax(0,1fr);gap:9px;padding:9px}
+ .portrait-wrap{height:108px}
+ #heroPortrait{width:88px;height:88px}
+ .hero-bio h3{font-size:22px}
+ #heroRole{font-size:11px}
+ #heroDesc{font-size:12px;line-height:1.35}
+ .hero-traits{grid-column:1/-1;border-left:0;border-top:1px solid #b39a7d;padding:8px 0 0;
+ display:flex;justify-content:space-around;gap:5px;font-size:10px}
+ .hero-traits div{gap:3px}
+ .select-actions button{font-size:13px;padding:10px 9px}
+}
 </style></head><body>
 <header><h1>⚔️ WILLEMVERSE: THE GAME</h1><p>Collect the Four Willems. Escape Swimsuit Willem. Defeat Thanos Willem.</p></header>
 <main>
 <section id="splash">
   <div class="splash-top">THE FOUR WILLEMS</div>
-  <h2 class="splash-heading">WILLEMVERSE</h2>
+  <h2 class="splash-heading">WILLEMVERSE <span>THE GAME</span></h2>
   <div class="splash-sub">THE VILLAIN RISES</div>
   <canvas id="splashArt" width="768" height="500" aria-label="Thanos Willem and his Miles minions looming over the six heroes"></canvas>
   <p class="splash-tagline">Six heroes. Four relics. One final showdown.</p>
   <button type="button" id="enterSelect" class="primary splash-start">▶ START GAME</button>
 </section>
-<section id="select" class="hidden"><h2>SELECT YOUR CHARACTER</h2><p>All six heroes are unlocked. Everyone has identical abilities.</p><div id="roster" class="roster"><button type="button" class="hero" data-hero="0"><canvas width="96" height="112"></canvas><strong>Vito</strong><small>💪 The Powerhouse</small><em>A mountain of muscle with a questionable amount of protein.</em></button><button type="button" class="hero" data-hero="1"><canvas width="96" height="112"></canvas><strong>Femmy</strong><small>💤 The Sleeper</small><em>Always tired, but somehow gets the job done.</em></button><button type="button" class="hero" data-hero="2"><canvas width="96" height="112"></canvas><strong>Benson Boone</strong><small>🪖 The Military Police</small><em>Keeping law and order, even when nobody asked.</em></button><button type="button" class="hero" data-hero="3"><canvas width="96" height="112"></canvas><strong>Mr. 305</strong><small>🌴 The Miami Operator</small><em>Miami energy, sunglasses, and controlled chaos.</em></button><button type="button" class="hero" data-hero="4"><canvas width="96" height="112"></canvas><strong>Avery</strong><small>🎈 The Blow Up Doll</small><em>The party arrives wherever Avery goes.</em></button><button type="button" class="hero" data-hero="5"><canvas width="96" height="112"></canvas><strong>Butter Blayde</strong><small>🥩 Pork Chops</small><em>The grill master who believes butter fixes everything.</em></button></div>
-<div class="actions"><button class="primary" id="start" disabled>Choose a hero to begin</button></div></section>
+<section id="select" class="hidden">
+<div class="select-title">◆ &nbsp; SELECT YOUR CHARACTER &nbsp; ◆</div>
+<p class="select-hint">Choose your champion. All six heroes have identical abilities.</p><div id="roster" class="roster"><button type="button" class="hero" data-hero="0"><canvas width="96" height="112"></canvas><strong>Vito</strong><small>💪 The Powerhouse</small><em>A mountain of muscle with a questionable amount of protein.</em></button><button type="button" class="hero" data-hero="1"><canvas width="96" height="112"></canvas><strong>Femmy</strong><small>💤 The Sleeper</small><em>Always tired, but somehow gets the job done.</em></button><button type="button" class="hero" data-hero="2"><canvas width="96" height="112"></canvas><strong>Benson Boone</strong><small>🪖 The Military Police</small><em>Keeping law and order, even when nobody asked.</em></button><button type="button" class="hero" data-hero="3"><canvas width="96" height="112"></canvas><strong>Mr. 305</strong><small>🌴 The Miami Operator</small><em>Miami energy, sunglasses, and controlled chaos.</em></button><button type="button" class="hero" data-hero="4"><canvas width="96" height="112"></canvas><strong>Avery</strong><small>🎈 The Blow Up Doll</small><em>The party arrives wherever Avery goes.</em></button><button type="button" class="hero" data-hero="5"><canvas width="96" height="112"></canvas><strong>Butter Blayde</strong><small>🥩 Pork Chops</small><em>The grill master who believes butter fixes everything.</em></button></div>
+<div id="heroDetail" class="hero-detail" aria-live="polite">
+  <div class="portrait-wrap"><canvas id="heroPortrait" width="192" height="192"></canvas></div>
+  <div class="hero-bio"><h3 id="heroName">CHOOSE YOUR HERO</h3><div id="heroRole">— SIX LEGENDS AWAIT —</div><p id="heroDesc">Select a character above to reveal their story.</p></div>
+  <div class="hero-traits"><div>⚔️ <span>Adventure Ready</span></div><div>❤️ <span>Three Hearts</span></div><div>🏆 <span>Relic Hunter</span></div></div>
+</div>
+<div class="actions select-actions"><button type="button" class="secondary" id="backToSplash">◀ BACK</button><button class="primary" id="start" disabled>CHOOSE A HERO ▶</button></div></section>
 <section id="playing" class="hidden">
 <div class="gamebar"><div><strong id="levelTitle"></strong><div id="counter"></div><div id="collection"></div><div id="health"></div><div id="bossbar" class="hidden"><div id="bossfill"></div></div><div id="danger" aria-live="polite"></div></div><div class="game-actions"><button class="secondary" id="musicToggle" type="button" aria-pressed="true">♫ Music: ON</button><label class="volume-label" for="musicVolume">Volume <input id="musicVolume" type="range" min="0" max="100" value="35" aria-label="Music volume"></label><button class="secondary" id="change">Change Character</button></div></div>
 <div class="stage"><canvas id="game" width="768" height="480" aria-label="Top-down adventure game"></canvas>
@@ -107,7 +176,13 @@ document.querySelectorAll('#roster .hero').forEach((b,i)=>{
     selected=i;
     document.querySelectorAll('.hero').forEach((e,j)=>e.classList.toggle('selected',i===j));
     document.querySelector('#start').disabled=false;
-    document.querySelector('#start').textContent='Play as '+hero.name;
+    document.querySelector('#start').textContent='PLAY AS '+hero.name.toUpperCase()+' ▶';
+    document.querySelector('#heroName').textContent=hero.name.toUpperCase();
+    document.querySelector('#heroRole').textContent='— '+hero.role.toUpperCase()+' —';
+    document.querySelector('#heroDesc').textContent=hero.desc;
+    const portrait=document.querySelector('#heroPortrait');
+    const pc=portrait.getContext('2d');pc.clearRect(0,0,portrait.width,portrait.height);
+    try{drawHero(pc,24,0,hero,144)}catch(e){console.warn('Preview unavailable',e)}
   });
   try{drawHero(b.querySelector('canvas').getContext('2d'),0,2,hero,96)}catch(err){console.warn('Portrait rendering skipped',err)}
 });
@@ -167,6 +242,7 @@ function updateDanger(){
  el.classList.toggle('alert',d<=4);
 }
 function finish(title,message,button){
+ if(title.includes('GR’d'))playGRGroan();
  completed=true;document.querySelector('#overlayTitle').textContent=title;document.querySelector('#overlayText').textContent=message;
  document.querySelector('#next').textContent=button;document.querySelector('#overlay').classList.remove('hidden');
 }
@@ -310,14 +386,18 @@ let interval;document.querySelectorAll('[data-dir]').forEach(b=>{
 document.querySelector('#fire').addEventListener('pointerdown',e=>{e.preventDefault();shoot()});
 document.querySelector('#fire').onclick=shoot;
 
+const splashBg=new Image();
+splashBg.onload=()=>{try{drawSplash()}catch(e){console.warn(e)}};
+splashBg.src='willemverse-landscape.webp';
 function drawSplash(){
  const c=document.querySelector('#splashArt').getContext('2d');
  const rect=(color,x,y,w,h)=>{c.fillStyle=color;c.fillRect(x,y,w,h)};
- const sky=c.createLinearGradient(0,0,0,500);sky.addColorStop(0,'#130f2a');sky.addColorStop(.6,'#51306d');sky.addColorStop(1,'#c57662');c.fillStyle=sky;c.fillRect(0,0,768,500);
+ const sky=c.createLinearGradient(0,0,0,500);sky.addColorStop(0,'#171333');sky.addColorStop(.6,'#44305c');sky.addColorStop(1,'#ae665e');c.fillStyle=sky;c.fillRect(0,0,768,500);
  // Distant mountains, storm, and villain's looming shadow
  c.fillStyle='#302448';c.beginPath();c.moveTo(0,315);c.lineTo(120,185);c.lineTo(230,300);c.lineTo(355,155);c.lineTo(510,290);c.lineTo(650,170);c.lineTo(768,300);c.lineTo(768,500);c.lineTo(0,500);c.fill();
  c.fillStyle='#211b39';c.beginPath();c.moveTo(0,380);c.lineTo(165,290);c.lineTo(280,375);c.lineTo(500,280);c.lineTo(650,380);c.lineTo(768,310);c.lineTo(768,500);c.lineTo(0,500);c.fill();
  c.fillStyle='#e4c4fa';for(let i=0;i<26;i++){let x=(i*157+23)%768,y=(i*71+11)%240;c.fillRect(x,y,3,3)}
+ if(splashBg.complete&&splashBg.naturalWidth){c.drawImage(splashBg,0,0,768,500);rect('#13122a99',0,0,768,375)}
  c.save();c.translate(384,70);c.scale(4.3,4.3);drawThanos(c,-24,0);c.restore();
  c.save();c.translate(160,195);c.scale(2.25,2.25);drawMiles(c,-24,0);c.restore();
  c.save();c.translate(610,195);c.scale(2.25,2.25);drawMiles(c,-24,0);c.restore();
@@ -327,6 +407,10 @@ function drawSplash(){
  c.font='bold 20px system-ui';c.textAlign='center';c.fillStyle='#ffde8d';c.fillText('THANOS WILLEM',384,48);
  c.fillStyle='#e3d4f3';c.font='bold 16px system-ui';c.fillText('MILES',160,186);c.fillText('MILES',610,186);
 }
+document.querySelector('#backToSplash').addEventListener('click',()=>{
+ document.querySelector('#select').classList.add('hidden');
+ document.querySelector('#splash').classList.remove('hidden');
+});
 document.querySelector('#enterSelect').addEventListener('click',()=>{
  document.querySelector('#splash').classList.add('hidden');
  document.querySelector('#select').classList.remove('hidden');
@@ -334,9 +418,37 @@ document.querySelector('#enterSelect').addEventListener('click',()=>{
 try{drawSplash()}catch(error){console.warn('Intro illustration failed:',error)}
 
 
+
+function playGRGroan(){
+ try{
+  if(!ROCK.init())return;
+  const c=ROCK.ctx;
+  if(c.state==='suspended')c.resume().catch(()=>{});
+  const t=c.currentTime+.025,output=c.createGain(),filter=c.createBiquadFilter();
+  filter.type='lowpass';filter.frequency.value=550;
+  output.gain.setValueAtTime(.0001,t);
+  output.gain.exponentialRampToValueAtTime(.62,t+.12);
+  output.gain.setValueAtTime(.52,t+.42);
+  output.gain.exponentialRampToValueAtTime(.0001,t+1.65);
+  filter.connect(output);output.connect(ROCK.master);
+  for(let i=0;i<3;i++){
+   const o=c.createOscillator();o.type=i===0?'sawtooth':'triangle';
+   o.frequency.setValueAtTime([114,171,228][i],t);
+   o.frequency.exponentialRampToValueAtTime([47,70,94][i],t+1.55);
+   const g=c.createGain();g.gain.value=[.7,.22,.1][i];
+   o.connect(g);g.connect(filter);o.start(t);o.stop(t+1.7);
+  }
+  const n=c.createBufferSource(),ng=c.createGain(),nf=c.createBiquadFilter();
+  n.buffer=ROCK.noise;nf.type='bandpass';nf.frequency.value=250;nf.Q.value=.7;
+  ng.gain.setValueAtTime(.0001,t);ng.gain.exponentialRampToValueAtTime(.13,t+.2);
+  ng.gain.exponentialRampToValueAtTime(.0001,t+1.25);
+  n.connect(nf);nf.connect(ng);ng.connect(filter);n.start(t);n.stop(t+1.3);
+ }catch(e){console.warn('GR groan unavailable',e)}
+}
+
 // Original instrumental rock soundtrack. Generated with Web Audio; no external songs or files.
 const ROCK={
- ctx:null,master:null,playing:false,enabled:true,volume:.35,timer:null,nextTime:0,step:0,noise:null,
+ ctx:null,master:null,playing:false,enabled:true,volume:.35,timer:null,nextTime:0,step:0,noise:null,drive:null,
  init(){
   if(this.ctx)return true;
   const AudioContext=window.AudioContext||window.webkitAudioContext;
@@ -348,6 +460,12 @@ const ROCK={
   limiter.threshold.value=-17;limiter.knee.value=16;limiter.ratio.value=7;
   limiter.attack.value=.004;limiter.release.value=.2;
   this.master.connect(limiter);limiter.connect(this.ctx.destination);
+  this.drive=this.ctx.createWaveShaper();
+  const curve=new Float32Array(4096);
+  for(let i=0;i<curve.length;i++){let x=(i*2/(curve.length-1))-1;curve[i]=Math.tanh(9*x)}
+  this.drive.curve=curve;this.drive.oversample='4x';
+  const cab=this.ctx.createBiquadFilter();cab.type='lowpass';cab.frequency.value=2900;cab.Q.value=.7;
+  this.drive.connect(cab);cab.connect(this.master);
   const len=this.ctx.sampleRate;
   this.noise=this.ctx.createBuffer(1,len,this.ctx.sampleRate);
   const d=this.noise.getChannelData(0);
@@ -380,8 +498,22 @@ const ROCK={
    o.connect(kg);kg.connect(this.master);o.start(time);o.stop(time+.21);
   }
  },
+ guitar(freq,time,duration=.2){
+  const c=this.ctx,env=c.createGain(),hi=c.createBiquadFilter();
+  hi.type='highpass';hi.frequency.value=95;
+  env.gain.setValueAtTime(.0001,time);
+  env.gain.exponentialRampToValueAtTime(.15,time+.006);
+  env.gain.exponentialRampToValueAtTime(.075,time+.06);
+  env.gain.exponentialRampToValueAtTime(.0001,time+duration);
+  hi.connect(env);env.connect(this.drive);
+  [1,1.005,1.5,2].forEach((m,i)=>{
+   const o=c.createOscillator();o.type=i===3?'square':'sawtooth';
+   o.frequency.setValueAtTime(freq*m,time);o.connect(hi);
+   o.start(time);o.stop(time+duration+.012);
+  });
+ },
  chord(root,time,duration=.19){
-  [1,1.5,2].forEach((mult,i)=>this.tone(root*mult,time,duration,'sawtooth',i===0?.055:.038,950));
+  this.guitar(root,time,duration);
  },
  schedule(){
   if(!this.playing||!this.ctx)return;
@@ -395,8 +527,8 @@ const ROCK={
    // Original eight-bar progression in E minor: Em, C, G, D, Em, C, Am, Bm
    const roots=[82.41,65.41,98,73.42,82.41,65.41,55,61.74];
    const root=roots[bar];
-   if(beat===0||beat===6||beat===8||beat===12||beat===14)this.chord(root,t,beat===0?.31:.14);
-   if(beat%4===0)this.tone(root/2,t,.25,'triangle',.18,430);
+   if([0,2,3,6,8,10,12,14].includes(beat))this.chord(root,t,beat===0?.36:beat%4===0?.23:.115);
+   if(beat%4===0)this.tone(root/2,t,.25,'sawtooth',.11,540);
    if(beat===10)this.tone(root*.75,t,.13,'triangle',.13,420);
    // Simple original lead motif (not based on an existing recording)
    const melody=[329.63,392,440,392,293.66,329.63,392,293.66,246.94,293.66,329.63,246.94,293.66,329.63,369.99,392];
