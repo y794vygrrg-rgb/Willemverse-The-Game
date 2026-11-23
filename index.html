@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Willemverse 4.3: Legends of the Willemverse</title><style>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Willemverse 4.4: Legends Come Alive</title><style>
 :root{font-family:system-ui,Arial;background:#111a29;color:#f7f3e9}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#293b58,#101722 75%);min-height:100vh}button{cursor:pointer;font:inherit;border:0}header{text-align:center;padding:24px 12px 10px}h1{margin:0;font-size:clamp(28px,5vw,44px)}p{color:#b9c6d9}main{max-width:1020px;margin:auto;padding:12px 18px 40px}.hidden{display:none!important}.roster{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.hero{background:#24334a;border:3px solid #41536e;border-radius:18px;padding:16px 10px;text-align:center;color:white;transition:.15s}.hero.selected{border-color:#ffdb7d;background:#3b4256;transform:translateY(-3px)}.hero canvas{width:90px;height:110px;image-rendering:pixelated}.hero strong{display:block;font-size:18px}.hero small{color:#b9c6d9}.actions{text-align:center;margin:24px}.primary{background:#f7c75e;color:#1a2434;font-weight:800;border-radius:12px;padding:14px 30px}.primary:disabled{opacity:.4}.secondary{background:#394f6a;color:white;padding:10px 18px;border-radius:10px}.gamebar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}.stage{position:relative;max-width:768px;margin:auto}#game{width:100%;display:block;border:4px solid #758ba6;border-radius:12px;image-rendering:pixelated;background:#234b3d}.touch{display:grid;grid-template-columns:repeat(3,58px);gap:5px;justify-content:center;margin:15px auto}.touch button{height:51px;background:#3e5876;color:white;border-radius:12px;font-size:23px;touch-action:none}.touch .empty{visibility:hidden}.note{text-align:center;font-size:14px}.overlay{position:absolute;inset:0;background:#111b2ce8;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;border-radius:12px}.overlay h2{font-size:30px;margin:4px}.overlay p{max-width:380px}@media(max-width:550px){.roster{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.hero{padding:10px 4px}.hero canvas{width:72px;height:90px}.hero strong{font-size:15px}}
 .hero em{display:block;color:#d3dbea;font-size:12px;font-style:normal;margin-top:8px;line-height:1.35;min-height:32px}.hero{background:linear-gradient(155deg,#304d78,#1c2946);border-color:#5275a1;box-shadow:0 5px 0 #0c1425}.hero.selected{border-color:#ffc84b;box-shadow:0 0 0 2px #ffdb7d,0 0 25px #f6b94b66;background:linear-gradient(155deg,#456394,#293652)}h1{color:#ffcb55;text-shadow:3px 4px #5e2e40;letter-spacing:1px}.primary{background:linear-gradient(#ffe38a,#f7b938);box-shadow:0 4px 0 #9a641c}.roster{margin-top:20px}.hero strong{margin:5px 0}.hero canvas{height:110px}.hero small{display:block}.hero:focus-visible{outline:3px solid white;outline-offset:3px}@media(max-width:550px){.hero em{font-size:11px;min-height:43px}}
 #danger{font-weight:900;color:#ffcf62;min-height:1.4em;letter-spacing:.03em}#danger.alert{color:#ff6d71;animation:blink .65s infinite alternate}@keyframes blink{from{opacity:1}to{opacity:.55}}.overlay{z-index:3}.overlay h2{color:#ffd16a;text-shadow:2px 3px #4d1b28}.gamebar{min-height:64px}
@@ -95,6 +95,20 @@ body:has(#splash:not(.hidden)) main,body:has(#select:not(.hidden)) main{max-widt
  .hero-traits div{gap:3px}
  .select-actions button{font-size:13px;padding:10px 9px}
 }
+
+#select .hero .cinematic-portrait{display:block;width:100%;max-width:142px;height:112px;object-fit:cover;object-position:center 26%;border-radius:10px;margin:0 auto 5px;box-shadow:0 3px 10px #081325}
+#select .hero canvas{display:none!important}
+#heroPhoto{display:block;width:100%;height:100%;object-fit:cover;border-radius:10px}
+#heroPortrait{display:none!important}
+.portrait-wrap{height:170px;overflow:hidden}
+.splash-hero-lineup{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;max-width:768px;margin:13px auto 0}
+.splash-hero-lineup img{width:100%;aspect-ratio:1/1;object-fit:cover;border:3px solid #e8b65e;border-radius:12px;box-shadow:0 4px 0 #13203b}
+@media(max-width:650px){
+#select .hero .cinematic-portrait{height:76px}
+.portrait-wrap{height:112px}
+.splash-hero-lineup{gap:4px}
+.splash-hero-lineup img{border-width:2px;border-radius:7px}
+}
 </style></head><body>
 <header><h1>⚔️ WILLEMVERSE: THE GAME</h1><p>Collect the Four Willems. Escape Swimsuit Willem. Defeat Thanos Willem.</p></header>
 <main>
@@ -103,14 +117,14 @@ body:has(#splash:not(.hidden)) main,body:has(#select:not(.hidden)) main{max-widt
   <h2 class="splash-heading">WILLEMVERSE <span>THE GAME</span></h2>
   <div class="splash-sub">THE VILLAIN RISES</div>
   <canvas id="splashArt" width="768" height="500" aria-label="Thanos Willem and his Miles minions looming over the six heroes"></canvas>
-  <p class="splash-tagline">Six heroes. Four relics. One final showdown.</p>
+  <div class="splash-hero-lineup" aria-label="The six playable heroes"><img src="portrait-vito.webp" alt="Vito"><img src="portrait-femmy.webp" alt="Femmy"><img src="portrait-benson.webp" alt="Benson Boone"><img src="portrait-mr305.webp" alt="Mr. 305"><img src="portrait-avery.webp" alt="Avery"><img src="portrait-butter.webp" alt="Butter Blayde"></div><p class="splash-tagline">Six heroes. Four relics. One final showdown.</p>
   <button type="button" id="enterSelect" class="primary splash-start">▶ START GAME</button>
 </section>
 <section id="select" class="hidden">
 <div class="select-title">◆ &nbsp; SELECT YOUR CHARACTER &nbsp; ◆</div>
-<p class="select-hint">Choose your champion. All six heroes have identical abilities.</p><div id="roster" class="roster"><button type="button" class="hero" data-hero="0"><canvas width="96" height="112"></canvas><strong>Vito</strong><small>💪 The Powerhouse</small><em>A mountain of muscle with a questionable amount of protein.</em></button><button type="button" class="hero" data-hero="1"><canvas width="96" height="112"></canvas><strong>Femmy</strong><small>💤 The Sleeper</small><em>Always tired, but somehow gets the job done.</em></button><button type="button" class="hero" data-hero="2"><canvas width="96" height="112"></canvas><strong>Benson Boone</strong><small>🪖 The Military Police</small><em>Keeping law and order, even when nobody asked.</em></button><button type="button" class="hero" data-hero="3"><canvas width="96" height="112"></canvas><strong>Mr. 305</strong><small>🌴 The Miami Operator</small><em>Miami energy, sunglasses, and controlled chaos.</em></button><button type="button" class="hero" data-hero="4"><canvas width="96" height="112"></canvas><strong>Avery</strong><small>🎈 The Blow Up Doll</small><em>The party arrives wherever Avery goes.</em></button><button type="button" class="hero" data-hero="5"><canvas width="96" height="112"></canvas><strong>Butter Blayde</strong><small>🥩 Pork Chops</small><em>The grill master who believes butter fixes everything.</em></button></div>
+<p class="select-hint">Choose your champion. All six heroes have identical abilities.</p><div id="roster" class="roster"><button type="button" class="hero" data-hero="0"><img class="cinematic-portrait" src="portrait-vito.webp" alt="" loading="eager"><canvas width="96" height="112"></canvas><strong>Vito</strong><small>💪 The Powerhouse</small><em>A mountain of muscle with a questionable amount of protein.</em></button><button type="button" class="hero" data-hero="1"><img class="cinematic-portrait" src="portrait-femmy.webp" alt="" loading="eager"><canvas width="96" height="112"></canvas><strong>Femmy</strong><small>💤 The Sleeper</small><em>Always tired, but somehow gets the job done.</em></button><button type="button" class="hero" data-hero="2"><img class="cinematic-portrait" src="portrait-benson.webp" alt="" loading="eager"><canvas width="96" height="112"></canvas><strong>Benson Boone</strong><small>🪖 The Military Police</small><em>Keeping law and order, even when nobody asked.</em></button><button type="button" class="hero" data-hero="3"><img class="cinematic-portrait" src="portrait-mr305.webp" alt="" loading="eager"><canvas width="96" height="112"></canvas><strong>Mr. 305</strong><small>🌴 The Miami Operator</small><em>Miami energy, sunglasses, and controlled chaos.</em></button><button type="button" class="hero" data-hero="4"><img class="cinematic-portrait" src="portrait-avery.webp" alt="" loading="eager"><canvas width="96" height="112"></canvas><strong>Avery</strong><small>🎈 The Blow Up Doll</small><em>The party arrives wherever Avery goes.</em></button><button type="button" class="hero" data-hero="5"><img class="cinematic-portrait" src="portrait-butter.webp" alt="" loading="eager"><canvas width="96" height="112"></canvas><strong>Butter Blayde</strong><small>🥩 Pork Chops</small><em>The grill master who believes butter fixes everything.</em></button></div>
 <div id="heroDetail" class="hero-detail" aria-live="polite">
-  <div class="portrait-wrap"><canvas id="heroPortrait" width="192" height="192"></canvas></div>
+  <div class="portrait-wrap"><img id="heroPhoto" src="" alt="Selected hero portrait" class="hidden"><canvas id="heroPortrait" width="192" height="192"></canvas></div>
   <div class="hero-bio"><h3 id="heroName">CHOOSE YOUR HERO</h3><div id="heroRole">— SIX LEGENDS AWAIT —</div><p id="heroDesc">Select a character above to reveal their story.</p></div>
   <div class="hero-traits"><div>⚔️ <span>Adventure Ready</span></div><div>❤️ <span>Three Hearts</span></div><div>🏆 <span>Relic Hunter</span></div></div>
 </div>
@@ -177,6 +191,9 @@ document.querySelectorAll('#roster .hero').forEach((b,i)=>{
     document.querySelectorAll('.hero').forEach((e,j)=>e.classList.toggle('selected',i===j));
     document.querySelector('#start').disabled=false;
     document.querySelector('#start').textContent='PLAY AS '+hero.name.toUpperCase()+' ▶';
+    const heroPhoto=document.querySelector('#heroPhoto');
+    heroPhoto.src=['portrait-vito.webp','portrait-femmy.webp','portrait-benson.webp','portrait-mr305.webp','portrait-avery.webp','portrait-butter.webp'][i];
+    heroPhoto.classList.remove('hidden');
     document.querySelector('#heroName').textContent=hero.name.toUpperCase();
     document.querySelector('#heroRole').textContent='— '+hero.role.toUpperCase()+' —';
     document.querySelector('#heroDesc').textContent=hero.desc;
@@ -386,9 +403,6 @@ let interval;document.querySelectorAll('[data-dir]').forEach(b=>{
 document.querySelector('#fire').addEventListener('pointerdown',e=>{e.preventDefault();shoot()});
 document.querySelector('#fire').onclick=shoot;
 
-const splashBg=new Image();
-splashBg.onload=()=>{try{drawSplash()}catch(e){console.warn(e)}};
-splashBg.src='willemverse-landscape.webp';
 function drawSplash(){
  const c=document.querySelector('#splashArt').getContext('2d');
  const rect=(color,x,y,w,h)=>{c.fillStyle=color;c.fillRect(x,y,w,h)};
@@ -397,7 +411,6 @@ function drawSplash(){
  c.fillStyle='#302448';c.beginPath();c.moveTo(0,315);c.lineTo(120,185);c.lineTo(230,300);c.lineTo(355,155);c.lineTo(510,290);c.lineTo(650,170);c.lineTo(768,300);c.lineTo(768,500);c.lineTo(0,500);c.fill();
  c.fillStyle='#211b39';c.beginPath();c.moveTo(0,380);c.lineTo(165,290);c.lineTo(280,375);c.lineTo(500,280);c.lineTo(650,380);c.lineTo(768,310);c.lineTo(768,500);c.lineTo(0,500);c.fill();
  c.fillStyle='#e4c4fa';for(let i=0;i<26;i++){let x=(i*157+23)%768,y=(i*71+11)%240;c.fillRect(x,y,3,3)}
- if(splashBg.complete&&splashBg.naturalWidth){c.drawImage(splashBg,0,0,768,500);rect('#13122a99',0,0,768,375)}
  c.save();c.translate(384,70);c.scale(4.3,4.3);drawThanos(c,-24,0);c.restore();
  c.save();c.translate(160,195);c.scale(2.25,2.25);drawMiles(c,-24,0);c.restore();
  c.save();c.translate(610,195);c.scale(2.25,2.25);drawMiles(c,-24,0);c.restore();
@@ -424,28 +437,49 @@ function playGRGroan(){
   if(!ROCK.init())return;
   const c=ROCK.ctx;
   if(c.state==='suspended')c.resume().catch(()=>{});
-  const t=c.currentTime+.025,output=c.createGain(),filter=c.createBiquadFilter();
-  filter.type='lowpass';filter.frequency.value=550;
+  const t=c.currentTime+.03;
+  // Make the grumpy old-man groan stand out: temporarily duck the backing music.
+  if(ROCK.master){
+   const g=ROCK.master.gain,normal=ROCK.volume*.48;
+   g.cancelScheduledValues(t);g.setValueAtTime(g.value,t);
+   g.linearRampToValueAtTime(normal*.11,t+.06);
+   g.setValueAtTime(normal*.11,t+1.8);
+   g.linearRampToValueAtTime(normal,t+2.4);
+  }
+  const output=c.createGain(),filter=c.createBiquadFilter(),drive=c.createWaveShaper();
+  const curve=new Float32Array(2048);
+  for(let i=0;i<curve.length;i++){let x=i*2/(curve.length-1)-1;curve[i]=Math.tanh(x*2.8)}
+  drive.curve=curve;drive.oversample='2x';
+  filter.type='lowpass';filter.frequency.setValueAtTime(900,t);
+  filter.frequency.exponentialRampToValueAtTime(330,t+1.7);
   output.gain.setValueAtTime(.0001,t);
-  output.gain.exponentialRampToValueAtTime(.62,t+.12);
-  output.gain.setValueAtTime(.52,t+.42);
-  output.gain.exponentialRampToValueAtTime(.0001,t+1.65);
-  filter.connect(output);output.connect(ROCK.master);
-  for(let i=0;i<3;i++){
-   const o=c.createOscillator();o.type=i===0?'sawtooth':'triangle';
-   o.frequency.setValueAtTime([114,171,228][i],t);
-   o.frequency.exponentialRampToValueAtTime([47,70,94][i],t+1.55);
-   const g=c.createGain();g.gain.value=[.7,.22,.1][i];
-   o.connect(g);g.connect(filter);o.start(t);o.stop(t+1.7);
+  output.gain.exponentialRampToValueAtTime(.72,t+.16);
+  output.gain.setValueAtTime(.65,t+.75);
+  output.gain.exponentialRampToValueAtTime(.0001,t+1.9);
+  filter.connect(drive);drive.connect(output);
+  // Separate audio bus avoids having the groan drowned out by the soundtrack.
+  const comp=c.createDynamicsCompressor();comp.threshold.value=-12;comp.ratio.value=5;
+  output.connect(comp);comp.connect(c.destination);
+  for(let i=0;i<4;i++){
+   const o=c.createOscillator(),g=c.createGain();
+   o.type=i%2===0?'sawtooth':'triangle';
+   o.frequency.setValueAtTime([123,185,247,62][i],t);
+   o.frequency.linearRampToValueAtTime([108,161,215,55][i],t+.28);
+   o.frequency.exponentialRampToValueAtTime([51,76,103,26][i],t+1.8);
+   const wobble=c.createOscillator(),wobbleGain=c.createGain();
+   wobble.frequency.value=9+i*1.3;wobbleGain.gain.value=4+i;
+   wobble.connect(wobbleGain);wobbleGain.connect(o.frequency);
+   g.gain.value=[.52,.17,.09,.3][i];
+   o.connect(g);g.connect(filter);o.start(t);wobble.start(t);
+   o.stop(t+1.93);wobble.stop(t+1.93);
   }
   const n=c.createBufferSource(),ng=c.createGain(),nf=c.createBiquadFilter();
-  n.buffer=ROCK.noise;nf.type='bandpass';nf.frequency.value=250;nf.Q.value=.7;
-  ng.gain.setValueAtTime(.0001,t);ng.gain.exponentialRampToValueAtTime(.13,t+.2);
-  ng.gain.exponentialRampToValueAtTime(.0001,t+1.25);
-  n.connect(nf);nf.connect(ng);ng.connect(filter);n.start(t);n.stop(t+1.3);
+  n.buffer=ROCK.noise;nf.type='bandpass';nf.frequency.value=360;nf.Q.value=.65;
+  ng.gain.setValueAtTime(.0001,t);ng.gain.exponentialRampToValueAtTime(.16,t+.19);
+  ng.gain.exponentialRampToValueAtTime(.0001,t+1.7);
+  n.connect(nf);nf.connect(ng);ng.connect(filter);n.start(t);n.stop(t+1.8);
  }catch(e){console.warn('GR groan unavailable',e)}
 }
-
 // Original instrumental rock soundtrack. Generated with Web Audio; no external songs or files.
 const ROCK={
  ctx:null,master:null,playing:false,enabled:true,volume:.35,timer:null,nextTime:0,step:0,noise:null,drive:null,
