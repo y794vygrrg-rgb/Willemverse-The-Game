@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Willemverse 4.1: The Villain Rises</title><style>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Willemverse 4.2: Rock the Willemverse</title><style>
 :root{font-family:system-ui,Arial;background:#111a29;color:#f7f3e9}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#293b58,#101722 75%);min-height:100vh}button{cursor:pointer;font:inherit;border:0}header{text-align:center;padding:24px 12px 10px}h1{margin:0;font-size:clamp(28px,5vw,44px)}p{color:#b9c6d9}main{max-width:1020px;margin:auto;padding:12px 18px 40px}.hidden{display:none!important}.roster{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.hero{background:#24334a;border:3px solid #41536e;border-radius:18px;padding:16px 10px;text-align:center;color:white;transition:.15s}.hero.selected{border-color:#ffdb7d;background:#3b4256;transform:translateY(-3px)}.hero canvas{width:90px;height:110px;image-rendering:pixelated}.hero strong{display:block;font-size:18px}.hero small{color:#b9c6d9}.actions{text-align:center;margin:24px}.primary{background:#f7c75e;color:#1a2434;font-weight:800;border-radius:12px;padding:14px 30px}.primary:disabled{opacity:.4}.secondary{background:#394f6a;color:white;padding:10px 18px;border-radius:10px}.gamebar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}.stage{position:relative;max-width:768px;margin:auto}#game{width:100%;display:block;border:4px solid #758ba6;border-radius:12px;image-rendering:pixelated;background:#234b3d}.touch{display:grid;grid-template-columns:repeat(3,58px);gap:5px;justify-content:center;margin:15px auto}.touch button{height:51px;background:#3e5876;color:white;border-radius:12px;font-size:23px;touch-action:none}.touch .empty{visibility:hidden}.note{text-align:center;font-size:14px}.overlay{position:absolute;inset:0;background:#111b2ce8;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;border-radius:12px}.overlay h2{font-size:30px;margin:4px}.overlay p{max-width:380px}@media(max-width:550px){.roster{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.hero{padding:10px 4px}.hero canvas{width:72px;height:90px}.hero strong{font-size:15px}}
 .hero em{display:block;color:#d3dbea;font-size:12px;font-style:normal;margin-top:8px;line-height:1.35;min-height:32px}.hero{background:linear-gradient(155deg,#304d78,#1c2946);border-color:#5275a1;box-shadow:0 5px 0 #0c1425}.hero.selected{border-color:#ffc84b;box-shadow:0 0 0 2px #ffdb7d,0 0 25px #f6b94b66;background:linear-gradient(155deg,#456394,#293652)}h1{color:#ffcb55;text-shadow:3px 4px #5e2e40;letter-spacing:1px}.primary{background:linear-gradient(#ffe38a,#f7b938);box-shadow:0 4px 0 #9a641c}.roster{margin-top:20px}.hero strong{margin:5px 0}.hero canvas{height:110px}.hero small{display:block}.hero:focus-visible{outline:3px solid white;outline-offset:3px}@media(max-width:550px){.hero em{font-size:11px;min-height:43px}}
 #danger{font-weight:900;color:#ffcf62;min-height:1.4em;letter-spacing:.03em}#danger.alert{color:#ff6d71;animation:blink .65s infinite alternate}@keyframes blink{from{opacity:1}to{opacity:.55}}.overlay{z-index:3}.overlay h2{color:#ffd16a;text-shadow:2px 3px #4d1b28}.gamebar{min-height:64px}
@@ -27,6 +27,12 @@
 .touch #fire{grid-area:fire;min-height:64px;width:100%;font-size:21px;background:#b63f72;box-shadow:0 5px 0 #6e2247}
 .touch button:active{transform:translateY(3px);box-shadow:0 2px 0 #1b2c44}
 @media(max-width:390px){.touch{grid-template-columns:repeat(3,70px);column-gap:15px;row-gap:15px}.touch button{height:65px}}
+
+.game-actions{display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+.volume-label{display:flex;align-items:center;gap:6px;font-size:12px;color:#d4dbea}
+#musicVolume{width:75px;accent-color:#f7c75e}
+#musicToggle{white-space:nowrap}
+@media(max-width:600px){.game-actions{justify-content:center;width:100%;margin-top:8px}.gamebar{flex-wrap:wrap}}
 </style></head><body>
 <header><h1>⚔️ WILLEMVERSE: THE GAME</h1><p>Collect the Four Willems. Escape Swimsuit Willem. Defeat Thanos Willem.</p></header>
 <main>
@@ -41,7 +47,7 @@
 <section id="select" class="hidden"><h2>SELECT YOUR CHARACTER</h2><p>All six heroes are unlocked. Everyone has identical abilities.</p><div id="roster" class="roster"><button type="button" class="hero" data-hero="0"><canvas width="96" height="112"></canvas><strong>Vito</strong><small>💪 The Powerhouse</small><em>A mountain of muscle with a questionable amount of protein.</em></button><button type="button" class="hero" data-hero="1"><canvas width="96" height="112"></canvas><strong>Femmy</strong><small>💤 The Sleeper</small><em>Always tired, but somehow gets the job done.</em></button><button type="button" class="hero" data-hero="2"><canvas width="96" height="112"></canvas><strong>Benson Boone</strong><small>🪖 The Military Police</small><em>Keeping law and order, even when nobody asked.</em></button><button type="button" class="hero" data-hero="3"><canvas width="96" height="112"></canvas><strong>Mr. 305</strong><small>🌴 The Miami Operator</small><em>Miami energy, sunglasses, and controlled chaos.</em></button><button type="button" class="hero" data-hero="4"><canvas width="96" height="112"></canvas><strong>Avery</strong><small>🎈 The Blow Up Doll</small><em>The party arrives wherever Avery goes.</em></button><button type="button" class="hero" data-hero="5"><canvas width="96" height="112"></canvas><strong>Butter Blayde</strong><small>🥩 Pork Chops</small><em>The grill master who believes butter fixes everything.</em></button></div>
 <div class="actions"><button class="primary" id="start" disabled>Choose a hero to begin</button></div></section>
 <section id="playing" class="hidden">
-<div class="gamebar"><div><strong id="levelTitle"></strong><div id="counter"></div><div id="collection"></div><div id="health"></div><div id="bossbar" class="hidden"><div id="bossfill"></div></div><div id="danger" aria-live="polite"></div></div><button class="secondary" id="change">Change Character</button></div>
+<div class="gamebar"><div><strong id="levelTitle"></strong><div id="counter"></div><div id="collection"></div><div id="health"></div><div id="bossbar" class="hidden"><div id="bossfill"></div></div><div id="danger" aria-live="polite"></div></div><div class="game-actions"><button class="secondary" id="musicToggle" type="button" aria-pressed="true">♫ Music: ON</button><label class="volume-label" for="musicVolume">Volume <input id="musicVolume" type="range" min="0" max="100" value="35" aria-label="Music volume"></label><button class="secondary" id="change">Change Character</button></div></div>
 <div class="stage"><canvas id="game" width="768" height="480" aria-label="Top-down adventure game"></canvas>
 <div class="overlay hidden" id="overlay"><h2 id="overlayTitle"></h2><p id="overlayText"></p><button class="primary" id="next">Continue</button></div></div>
 <div id="toast" aria-live="polite"></div>
@@ -327,11 +333,110 @@ document.querySelector('#enterSelect').addEventListener('click',()=>{
 });
 try{drawSplash()}catch(error){console.warn('Intro illustration failed:',error)}
 
+
+// Original instrumental rock soundtrack. Generated with Web Audio; no external songs or files.
+const ROCK={
+ ctx:null,master:null,playing:false,enabled:true,volume:.35,timer:null,nextTime:0,step:0,noise:null,
+ init(){
+  if(this.ctx)return true;
+  const AudioContext=window.AudioContext||window.webkitAudioContext;
+  if(!AudioContext)return false;
+  this.ctx=new AudioContext();
+  this.master=this.ctx.createGain();
+  this.master.gain.value=this.volume*.48;
+  const limiter=this.ctx.createDynamicsCompressor();
+  limiter.threshold.value=-17;limiter.knee.value=16;limiter.ratio.value=7;
+  limiter.attack.value=.004;limiter.release.value=.2;
+  this.master.connect(limiter);limiter.connect(this.ctx.destination);
+  const len=this.ctx.sampleRate;
+  this.noise=this.ctx.createBuffer(1,len,this.ctx.sampleRate);
+  const d=this.noise.getChannelData(0);
+  for(let i=0;i<len;i++)d[i]=Math.random()*2-1;
+  return true;
+ },
+ tone(freq,time,duration,shape='sawtooth',gain=.1,cutoff=1600){
+  const c=this.ctx,o=c.createOscillator(),g=c.createGain(),f=c.createBiquadFilter();
+  o.type=shape;o.frequency.setValueAtTime(freq,time);
+  f.type='lowpass';f.frequency.value=cutoff;
+  g.gain.setValueAtTime(.0001,time);
+  g.gain.exponentialRampToValueAtTime(gain,time+.009);
+  g.gain.exponentialRampToValueAtTime(.0001,time+duration);
+  o.connect(f);f.connect(g);g.connect(this.master);
+  o.start(time);o.stop(time+duration+.02);
+ },
+ hit(time,kind){
+  const c=this.ctx,g=c.createGain(),f=c.createBiquadFilter(),n=c.createBufferSource();
+  n.buffer=this.noise;
+  f.type=kind==='hat'?'highpass':'bandpass';
+  f.frequency.value=kind==='hat'?7000:1750;
+  g.gain.setValueAtTime(kind==='hat'?.035:.15,time);
+  g.gain.exponentialRampToValueAtTime(.0001,time+(kind==='hat'?.055:.16));
+  n.connect(f);f.connect(g);g.connect(this.master);
+  n.start(time);n.stop(time+(kind==='hat'?.065:.18));
+  if(kind==='kick'){
+   const o=c.createOscillator(),kg=c.createGain();o.type='sine';
+   o.frequency.setValueAtTime(145,time);o.frequency.exponentialRampToValueAtTime(48,time+.13);
+   kg.gain.setValueAtTime(.48,time);kg.gain.exponentialRampToValueAtTime(.0001,time+.2);
+   o.connect(kg);kg.connect(this.master);o.start(time);o.stop(time+.21);
+  }
+ },
+ chord(root,time,duration=.19){
+  [1,1.5,2].forEach((mult,i)=>this.tone(root*mult,time,duration,'sawtooth',i===0?.055:.038,950));
+ },
+ schedule(){
+  if(!this.playing||!this.ctx)return;
+  const stepDur=60/132/4;
+  while(this.nextTime<this.ctx.currentTime+.22){
+   const i=this.step,beat=i%16,bar=Math.floor(i/16)%8,t=this.nextTime;
+   // Punchy kick/snare backbeat and driving eighth-note hi-hats
+   if(beat===0||beat===8||beat===10||beat===14)this.hit(t,'kick');
+   if(beat===4||beat===12)this.hit(t,'snare');
+   if(beat%2===0)this.hit(t,'hat');
+   // Original eight-bar progression in E minor: Em, C, G, D, Em, C, Am, Bm
+   const roots=[82.41,65.41,98,73.42,82.41,65.41,55,61.74];
+   const root=roots[bar];
+   if(beat===0||beat===6||beat===8||beat===12||beat===14)this.chord(root,t,beat===0?.31:.14);
+   if(beat%4===0)this.tone(root/2,t,.25,'triangle',.18,430);
+   if(beat===10)this.tone(root*.75,t,.13,'triangle',.13,420);
+   // Simple original lead motif (not based on an existing recording)
+   const melody=[329.63,392,440,392,293.66,329.63,392,293.66,246.94,293.66,329.63,246.94,293.66,329.63,369.99,392];
+   if((bar===3||bar===7)&&(beat===0||beat===3||beat===6||beat===10||beat===13))
+    this.tone(melody[(bar*3+beat)%melody.length],t,.21,'square',.042,1250);
+   this.nextTime+=stepDur;this.step=(this.step+1)%128;
+  }
+ },
+ async start(){
+  if(!this.enabled||this.playing||!this.init())return;
+  try{await this.ctx.resume()}catch(e){console.warn('Music unavailable:',e);return}
+  this.playing=true;this.step=0;this.nextTime=this.ctx.currentTime+.04;
+  this.schedule();this.timer=setInterval(()=>this.schedule(),65);
+ },
+ stop(){
+  this.playing=false;
+  if(this.timer!==null){clearInterval(this.timer);this.timer=null}
+  if(this.ctx&&this.ctx.state==='running')this.ctx.suspend().catch(()=>{});
+ },
+ setVolume(value){this.volume=value;if(this.master)this.master.gain.value=value*.48}
+};
+const musicToggle=document.querySelector('#musicToggle');
+musicToggle.addEventListener('click',()=>{
+ ROCK.enabled=!ROCK.enabled;
+ musicToggle.textContent=ROCK.enabled?'♫ Music: ON':'♫ Music: OFF';
+ musicToggle.setAttribute('aria-pressed',String(ROCK.enabled));
+ if(ROCK.enabled){ROCK.start()}else{ROCK.stop()}
+});
+document.querySelector('#musicVolume').addEventListener('input',e=>ROCK.setVolume(Number(e.target.value)/100));
+document.addEventListener('visibilitychange',()=>{
+ if(document.hidden)ROCK.stop();
+ else if(ROCK.enabled&&!document.querySelector('#playing').classList.contains('hidden'))ROCK.start();
+});
+
 document.querySelector('#start').onclick=()=>{
+ ROCK.start();
  document.querySelector('#select').classList.add('hidden');document.querySelector('#playing').classList.remove('hidden');
  level=0;owned=[false,false,false,false];initLevel();if(!loopStarted){loopStarted=true;requestAnimationFrame(draw)}
 };
-document.querySelector('#change').onclick=()=>{document.querySelector('#playing').classList.add('hidden');document.querySelector('#select').classList.remove('hidden')};
+document.querySelector('#change').onclick=()=>{ROCK.stop();document.querySelector('#playing').classList.add('hidden');document.querySelector('#select').classList.remove('hidden')};
 document.querySelector('#next').onclick=()=>{
  let action=document.querySelector('#next').textContent;
  if(action==='Retry Level'){initLevel();return}
